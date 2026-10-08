@@ -36,8 +36,8 @@
 
 |Time     |Activity|Link|
 |---------|--------|----|
-|Morning  |Questions from the previous day|
-|Morning  |Docontamination of references  |[Hands-on](exercises.md#microbial-contamination-in-eukaryotic-references)    |
+|Morning  |Questions from the previous day|[Flinga](https://flinga.fi/s/FFQ5876)|
+|Morning  |Decontamination of references  |[Hands-on](exercises.md#microbial-contamination-in-eukaryotic-references)    |
 |Morning  |Metagenome assembly            |[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Lectures/Assembly-and-QC.pdf) / [Hands-on](exercises.md#metagenome-assembly)  |
 |Afternoon|Assembly & Assembly QC         |[Hands-on](exercises.md#assembly-qc)                                                   |
 |Afternoon|Long reads & long read assembly|[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Lectures/long-reads-and-assembly.pdf) / [Hands-on](exercises.md#assembling-long-reads-with-flye)                               |
@@ -46,7 +46,7 @@
 
 |Time      |Activity|Link|
 |----------|--------|----|
-|Morning   |Questions from the previous day||
+|Morning   |Questions from the previous day|[Flinga](https://flinga.fi/s/FFQ5876)|
 |Morning   |Binning and SemiBin2|[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Lectures/mag-binning.pdf) /[Hands-on](exercises.md#automatic-binning-with-semibin2)|
 |Afternoon |Metagenome-assembled genome (MAG) QC |[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Lectures/mag-qc-taxonomic-annotation.pdf) / [Hands-on](exercises.md#quality-control-and-taxonomic-annotation-of-metagenome-assembled-genomes-mags)
 
