@@ -252,7 +252,7 @@ In this exercise we will explore a computational workflow GENEX for detecting co
 
 Please note that in the gitub reporsitory of the GENEX workflow, we provide a small subset of microbial pseudo-reads for demonstration purposes, the full dataset is available at the SciLifeLab Figshare https://doi.org/10.17044/scilifelab.28491956. Please clone the GENEX workflow githib repository 
 
-    cd /home/nikolay
+    cd ~
     git clone https://github.com/NikolayOskolkov/MCWorkflow
     cd MCWorkflow
     git checkout 2fdf5da
@@ -274,7 +274,7 @@ where:
 
 Now we can start the workflow with the following command line:
 
-    ./micr_cont_detect.sh GCF_002220235.fna.gz /home/nikolay/MCWorkflow/data GTDB 4 \
+    ./micr_cont_detect.sh GCF_002220235.fna.gz ~/MCWorkflow/data GTDB 4 \
     GTDB_sliced_seqs_sliding_window.fna.gz GTDB_fna2name.txt
 
 For the toy-dataset and the small eukaryotic reference genome, the workflow takes only a few seconds to finish. Please note that for real-world applications, the alignment step is the most time consuming. Since the full GTDB sliced microbial pseudo-reads data set includes 26 billion reads, to our experience, the alignment to e.g. mammalian reference genomes can take up to 48 hours on an HPC compute node with 20 cores. Multi-threading is crucial here, more available threads may considerable speed up the workflow execution. The vignette `vignette.html` walks you through the explanations of the workflow parameters and interpretation of the output files.
