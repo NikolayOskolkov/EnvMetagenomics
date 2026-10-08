@@ -115,7 +115,7 @@ conda activate envmetagenomics
 And now you're ready to run the QC on the raw data:
 
 ```bash
-fastqc 01_DATA/*.fastq.gz -o 02_QC_RAW -t 4
+fastqc 01_DATA/*.fastq.gz --outdir 02_QC_RAW -t 4
 multiqc 02_QC_RAW -o 02_QC_RAW --interactive
 ```
 
