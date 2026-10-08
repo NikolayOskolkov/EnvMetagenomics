@@ -8,7 +8,7 @@
    2. [Read trimming](#read-trimming)
    3. [QC of the trimmed data](#qc-of-the-trimmed-data)
 4. [Host Removal](#host-removal)
-5. [Microbial contamination in eukaryotic references](microbial-contamination-in-eukaryotic-references)
+5. [Microbial contamination in eukaryotic references](#microbial-contamination-in-eukaryotic-references)
 6. [Read-based taxonomic profiling](#read-based-taxonomic-profiling)
    1. [Kraken2](#kraken2)
    2. [sourmash](#sourmash)
