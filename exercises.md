@@ -149,9 +149,9 @@ For the Illumina data, we will use a `for loop` to process each of the samples o
 ```bash
 for sample in $(cat SAMPLES.txt); do
   cutadapt 01_DATA/${sample}_pe_1.fastq.gz \
-           01_DATA/${sample}_R2.fastq.gz \
+           01_DATA/${sample}_pe_2.fastq.gz \
            -o 03_TRIMMED/${sample}_pe_1.fastq.gz \
-           -p 03_TRIMMED/${sample}_R2.fastq.gz \
+           -p 03_TRIMMED/${sample}_pe_2.fastq.gz \
            -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC \
            -A CTGTCTCTTATACACATCTGACGCTGCCGACGA \
            -m 50 \
@@ -171,12 +171,12 @@ There is another handy adapter removal program `fastp`. It can merge overlapping
 
 
 ```bash
-fastp --in1 01_DATA/G65860_pe_1.fastq.gz --in2 01_DATA/G65860_R2.fastq.gz \
---out1 03_TRIMMED/G65860_pe_1.trimmed.fastq.gz --out2 03_TRIMMED/G65860_R2.trimmed.fastq.gz \
+fastp --in1 01_DATA/G65860_pe_1.fastq.gz --in2 01_DATA/G65860_pe_2.fastq.gz \
+--out1 03_TRIMMED/G65860_pe_1.trimmed.fastq.gz --out2 03_TRIMMED/G65860_pe_2.trimmed.fastq.gz \
 -h 03_TRIMMED/fastp_report_G65860.html -w 20 -l 30
 
-fastp --in1 01_DATA/G69146_pe_1.fastq.gz --in2 01_DATA/G69146_R2.fastq.gz \
---out1 03_TRIMMED/G69146_pe_1.trimmed.fastq.gz --out2 03_TRIMMED/G69146_R2.trimmed.fastq.gz \
+fastp --in1 01_DATA/G69146_pe_1.fastq.gz --in2 01_DATA/G69146_pe_2.fastq.gz \
+--out1 03_TRIMMED/G69146_pe_1.trimmed.fastq.gz --out2 03_TRIMMED/G69146_pe_2.trimmed.fastq.gz \
 -h 03_TRIMMED/fastp_report_G69146.html -w 20 -l 30
 ```
 
@@ -227,7 +227,7 @@ mkdir 04_HOST_REMOVAL
 
 for sample in $(cat SAMPLES.txt); do
 	bowtie2 --large-index -x ~/Share/Databases/hg38.fa.gz --end-to-end --threads 4 --very-sensitive \
-	-1 03_TRIMMED/${sample}_pe_1.fastq.gz -2 03_TRIMMED/${sample}_R2.fastq.gz | samtools view -bS -h -@ 4 - \
+	-1 03_TRIMMED/${sample}_pe_1.fastq.gz -2 03_TRIMMED/${sample}_pe_2.fastq.gz | samtools view -bS -h -@ 4 - \
 	> 04_HOST_REMOVAL/${sample}_aligned_to_hg38.bam
 	
 	samtools sort 04_HOST_REMOVAL/${sample}_aligned_to_hg38.bam -@ 4 \
@@ -268,7 +268,7 @@ conda activate envmetagenomics
 
 for sample in $(cat SAMPLES.txt); do
   kraken2 --db ~/Share/Databases/minikraken2_v2_8GB_201904_UPDATE \
-	  --paired 03_TRIMMED/${sample}_pe_1.fastq.gz 03_TRIMMED/${sample}_R2.fastq.gz \
+	  --paired 03_TRIMMED/${sample}_pe_1.fastq.gz 03_TRIMMED/${sample}_pe_2.fastq.gz \
 	  --output 05_TAXONOMIC_PROFILE/${sample}_sequences.kraken \
 	  --report 05_TAXONOMIC_PROFILE/${sample}_kraken.output \
 	  --report-minimizer-data --use-names --threads 4
@@ -398,7 +398,7 @@ To quantify abundance of each assembled contig, let us now align the trimmed rea
 bowtie2-build --large-index 06_ASSEMBLY/final.contigs.fa 06_ASSEMBLY/final.contigs.fa --threads 4
 
 bowtie2 --large-index -x 06_ASSEMBLY/final.contigs.fa --end-to-end --threads 4 --very-sensitive \
--1 03_TRIMMED/${sample}_pe_1.fastq.gz -2 03_TRIMMED/${sample}_R2.fastq.gz | samtools view -bS -h -q 1 -@ 4 - \
+-1 03_TRIMMED/${sample}_pe_1.fastq.gz -2 03_TRIMMED/${sample}_pe_2.fastq.gz | samtools view -bS -h -q 1 -@ 4 - \
 > 07_ASSEMBLY_QC/aligned_to_assembled_contigs.bam
 
 samtools view 07_ASSEMBLY_QC/aligned_to_assembled_contigs.bam | cut -f3 > 07_ASSEMBLY_QC/contig_count.txt
