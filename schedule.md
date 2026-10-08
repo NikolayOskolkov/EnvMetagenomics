@@ -7,9 +7,9 @@
 |~ 1.5 h| Lecture: __Reconstructing genomes from metagenomes: key concepts__ |[Video](https://www.youtube.com/watch?v=RjNdHGK4ruo)|
 |~ 1.5 h| Lecture: __AaRCademy: a metagenomic perspective of aDNA analysis__ |[Video](https://www.youtube.com/watch?v=-nWoq6NTBd0&t=2121s)|
 |~ 2 h  | Review article: __Shotgun metagenomics, from sampling to analysis__|[PDF](Articles/nbt.3935.pdf)                        |
-| ~ 1 h | Useful reading: Detecting microbial contaminamination in eukaryotic reference genomes              | [PDF](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/articles/Oskolkov_GigaScience_2025.pdf)                                                                      |
-| ~ 1 h | Useful reading: Refining filtering criteria for taxonomic profiling of ancient metagenomics data   | [PDF](https://github.com/NikolayOskolkov/envMetagenomics/blob/main/articles/Oskolkov_FrontiersMicrobiology_2026.pdf)                                                                      |
-| ~ 2 h | aMeta method article in Genome Biology 2023                      | [PDF](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/articles/aMeta_GenomeBiology_2023.pdf)             |
+| ~ 1 h | Useful reading: Detecting microbial contaminamination in eukaryotic reference genomes              | [PDF](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Articles/Oskolkov_GigaScience_2025.pdf)                                                                      |
+| ~ 1 h | Useful reading: Refining filtering criteria for taxonomic profiling of ancient metagenomics data   | [PDF](https://github.com/NikolayOskolkov/envMetagenomics/blob/main/Articles/Oskolkov_FrontiersMicrobiology_2026.pdf)                                                                      |
+| ~ 2 h | aMeta method article in Genome Biology 2023                      | [PDF](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Articles/aMeta_GenomeBiology_2023.pdf)             |
 |~ 1 h  | In case needed: __Recap on Unix__                                  |[Hands-on](command-line-basics.md)                  |
 
 ## Monday - 9 am -1 pm Berlin time
