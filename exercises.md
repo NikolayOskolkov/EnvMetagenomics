@@ -429,7 +429,8 @@ conda activate envmetagenomics
 # wget -O- https://github.com/attractivechaos/k8/releases/download/v1.2/k8-1.2.tar.bz2 | tar -jxf -
 # however, k8 is already installed for you in ~/Share/k8-1.2/ 
 
-~/Share/Databases/k8-1.2/./k8-x86_64-Linux ~/Share/Databases/calN50.js 06_ASSEMBLY/final.contigs.fa > 07_ASSEMBLY_QC/assemstats.txt
+~/Share/Databases/k8-1.2/./k8-x86_64-Linux ~/Share/Databases/calN50.js 06_ASSEMBLY/final.contigs.fa \
+> 07_ASSEMBLY_QC/assemstats.txt
 ```
 
 N50 has a complex meaning. It is some sort of "average" (or representative) contig length but not exactly.
