@@ -20,6 +20,7 @@
 |Morning  |Introduction to metagenomics     |[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main//Lectures/introduction-to-metagenomics.pdf)                              |
 |Afternoon|Setting up the cloud computing   |[Hands-on](exercises.md#setting-up-the-cloud-computing)                          |
 |Afternoon|Getting the raw data             |[Hands-on](exercises.md#getting-the-raw-data)                                    |
+|Afternoon|QC and trimming                  |[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Lectures/QC-and-trimming.pdf) / [Hands-on](exercises.md#qc-and-trimming)    |
 
 ## Tuesday - 9 am -1 pm Berlin time
 
@@ -30,11 +31,13 @@
 |Afternoon|Host removal and decontamination |[Hands-on](exercises.md#host-removal)|
 |Afternoon|Read-based taxonomic profiling   |[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main//Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)|
 
+
 ## Wednesday - 9 am -1 pm Berlin time
 
 |Time     |Activity|Link|
 |---------|--------|----|
-|Morning  |Questions from the previous day||
+|Morning  |Questions from the previous day|
+|Morning  |Docontamination of references  |[Hands-on](exercises.md#microbial-contamination-in-eukaryotic-references)    |
 |Morning  |Metagenome assembly            |[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Lectures/Assembly-and-QC.pdf) / [Hands-on](exercises.md#metagenome-assembly)  |
 |Afternoon|Assembly & Assembly QC         |[Hands-on](exercises.md#assembly-qc)                                                   |
 |Afternoon|Long reads & long read assembly|[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Lectures/long-reads-and-assembly.pdf) / [Hands-on](exercises.md#assembling-long-reads-with-flye)                               |
