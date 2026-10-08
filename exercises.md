@@ -26,7 +26,7 @@
 We will use the [Amazon Cloud](https://aws.amazon.com/ec2/) (AWS EC2) services for most of the analyses. The IP address of the remote machine will change every day, so a new IP adress will be posted in Slack each morning. Your username - that you have received by e-mail/Slack - will be the same for the whole course. We will use `ssh` to connect to the remote machine. You will also receive the key i.e. pem-file, something like envmetagenomics26.pem, which you will have to change permissions for. Below is an example command line for a user "ubuntu" accessing the AWS at IP address "54.202.26.255".
 
 ```bash
-hmod 600 envmetagenomics26.pem
+chmod 600 envmetagenomics26.pem
 ssh -i envmetagenomics26.pem -XY ubuntu@54.202.26.255
 ```
 
@@ -80,7 +80,7 @@ cp ~/Share/toy_data/SAMPLES.txt ./
 Let us now explore the data a little bit. First of all, we can look inside the gzipped-file without unzipping with `zcat`:
 
 ```bash
-zcat 01_DATA/G69146_R1.fastq.gz | head
+zcat 01_DATA/G69146_pe_1.fastq.gz | head
 ```
 
 You should see 4 lines corresponding to each read: the first line contains the read ID (each starting with @), 
@@ -89,7 +89,7 @@ the second line corresponds to the sequence of the read, the third line is the d
 Let us now count the number of reads in the fastq-files:
 
 ```bash
-find 01_DATA -name '*R1.fastq.gz' | xargs zgrep -c ^@
+find 01_DATA -name '*pe_1.fastq.gz' | xargs zgrep -c ^@
 ```
 
 How many reads do we have in the fastq-files?
@@ -149,9 +149,9 @@ For the Illumina data, we will use a `for loop` to process each of the samples o
 
 ```bash
 for sample in $(cat SAMPLES.txt); do
-  cutadapt 01_DATA/${sample}_R1.fastq.gz \
+  cutadapt 01_DATA/${sample}_pe_1.fastq.gz \
            01_DATA/${sample}_R2.fastq.gz \
-           -o 03_TRIMMED/${sample}_R1.fastq.gz \
+           -o 03_TRIMMED/${sample}_pe_1.fastq.gz \
            -p 03_TRIMMED/${sample}_R2.fastq.gz \
            -a CTGTCTCTTATACACATCTCCGAGCCCACGAGAC \
            -A CTGTCTCTTATACACATCTGACGCTGCCGACGA \
@@ -172,12 +172,12 @@ There is another handy adapter removal program `fastp`. It can merge overlapping
 
 
 ```bash
-fastp --in1 01_DATA/G65860_R1.fastq.gz --in2 01_DATA/G65860_R2.fastq.gz \
---out1 03_TRIMMED/G65860_R1.trimmed.fastq.gz --out2 03_TRIMMED/G65860_R2.trimmed.fastq.gz \
+fastp --in1 01_DATA/G65860_pe_1.fastq.gz --in2 01_DATA/G65860_R2.fastq.gz \
+--out1 03_TRIMMED/G65860_pe_1.trimmed.fastq.gz --out2 03_TRIMMED/G65860_R2.trimmed.fastq.gz \
 -h 03_TRIMMED/fastp_report_G65860.html -w 20 -l 30
 
-fastp --in1 01_DATA/G69146_R1.fastq.gz --in2 01_DATA/G69146_R2.fastq.gz \
---out1 03_TRIMMED/G69146_R1.trimmed.fastq.gz --out2 03_TRIMMED/G69146_R2.trimmed.fastq.gz \
+fastp --in1 01_DATA/G69146_pe_1.fastq.gz --in2 01_DATA/G69146_R2.fastq.gz \
+--out1 03_TRIMMED/G69146_pe_1.trimmed.fastq.gz --out2 03_TRIMMED/G69146_R2.trimmed.fastq.gz \
 -h 03_TRIMMED/fastp_report_G69146.html -w 20 -l 30
 ```
 
@@ -228,7 +228,7 @@ mkdir 04_HOST_REMOVAL
 
 for sample in $(cat SAMPLES.txt); do
 	bowtie2 --large-index -x ~/Share/Databases/hg38.fa.gz --end-to-end --threads 4 --very-sensitive \
-	-1 03_TRIMMED/${sample}_R1.fastq.gz -2 03_TRIMMED/${sample}_R2.fastq.gz | samtools view -bS -h -@ 4 - \
+	-1 03_TRIMMED/${sample}_pe_1.fastq.gz -2 03_TRIMMED/${sample}_R2.fastq.gz | samtools view -bS -h -@ 4 - \
 	> 04_HOST_REMOVAL/${sample}_aligned_to_hg38.bam
 	
 	samtools sort 04_HOST_REMOVAL/${sample}_aligned_to_hg38.bam -@ 4 \
@@ -269,7 +269,7 @@ conda activate envmetagenomics
 
 for sample in $(cat SAMPLES.txt); do
   kraken2 --db ~/Share/Databases/minikraken2_v2_8GB_201904_UPDATE \
-	  --paired 03_TRIMMED/${sample}_R1.fastq.gz 03_TRIMMED/${sample}_R2.fastq.gz \
+	  --paired 03_TRIMMED/${sample}_pe_1.fastq.gz 03_TRIMMED/${sample}_R2.fastq.gz \
 	  --output 05_TAXONOMIC_PROFILE/${sample}_sequences.kraken \
 	  --report 05_TAXONOMIC_PROFILE/${sample}_kraken.output \
 	  --report-minimizer-data --use-names --threads 4
@@ -399,7 +399,7 @@ To quantify abundance of each assembled contig, let us now align the trimmed rea
 bowtie2-build --large-index 06_ASSEMBLY/final.contigs.fa 06_ASSEMBLY/final.contigs.fa --threads 4
 
 bowtie2 --large-index -x 06_ASSEMBLY/final.contigs.fa --end-to-end --threads 4 --very-sensitive \
--1 03_TRIMMED/${sample}_R1.fastq.gz -2 03_TRIMMED/${sample}_R2.fastq.gz | samtools view -bS -h -q 1 -@ 4 - \
+-1 03_TRIMMED/${sample}_pe_1.fastq.gz -2 03_TRIMMED/${sample}_R2.fastq.gz | samtools view -bS -h -q 1 -@ 4 - \
 > 07_ASSEMBLY_QC/aligned_to_assembled_contigs.bam
 
 samtools view 07_ASSEMBLY_QC/aligned_to_assembled_contigs.bam | cut -f3 > 07_ASSEMBLY_QC/contig_count.txt
