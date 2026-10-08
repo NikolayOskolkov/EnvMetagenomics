@@ -4,8 +4,8 @@
 
 ## Instructors
 
-- Dr. Nikolay Oskolkov, Lund University
-- Dr. Samuel Aroney, Queensland University of Technology
+- Dr. Nikolay Oskolkov, National Institute of Research and Innovation
+- Dr. Luis Pedro Coelho, Queensland University of Technology
 
 NB: original course material courtesy:
 
