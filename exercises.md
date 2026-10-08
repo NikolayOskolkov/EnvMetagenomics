@@ -296,6 +296,15 @@ cd ~/EnvMetagenomics
 mkdir 05_TAXONOMIC_PROFILE
 ```
 
+We will also need to download the Kraken2 database:
+
+```bash
+wget https://genome-idx.s3.amazonaws.com/kraken/minikraken2_v2_8GB_201904.tgz
+tar -xzvf minikraken2_v2_8GB_201904.tgz
+```
+
+However it was already downloaded for the course and is located in `~/Share/Databases/minikraken2_v2_8GB_201904_UPDATE`.
+
 ### Kraken2
 
 And now let's run `Kraken2`. Kraken2 is a taxonomic sequence classifier that assigns taxonomic labels to DNA sequences. 
@@ -347,6 +356,9 @@ genomes. In this way, it is able to leverage longer-range information present in
 not across reads themselves.
 
 ```bash
+# curl -O --no-clobber https://farm.cse.ucdavis.edu/~ctbrown/sourmash-db.new/gtdb-rs220/gtdb-rs220-k31.dna.zip
+# wget https://farm.cse.ucdavis.edu/~ctbrown/sourmash-db.new/gtdb-rs220/gtdb-rs220.lineages.csv
+
 conda activate envmetagenomics
 
 for sample in $(cat SAMPLES.txt); do
@@ -356,21 +368,21 @@ for sample in $(cat SAMPLES.txt); do
                       --merge ${sample}
 
   sourmash gather 05_TAXONOMIC_PROFILE/${sample}.sig.zip \
-                  ~/Share/Databases/gtdb-rs207.genomic-reps.dna.k31.zip \
+                  ~/Share/Databases/gtdb-rs220-k31.dna.zip \
                   -k 31 --threshold-bp 10 \
                   -o 05_TAXONOMIC_PROFILE/${sample}.gather.csv
 done
 
 # Gather results
 sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
-                        -t ~/Share/Databases/gtdb-rs207.taxonomy.with-strain.csv.gz \
+                        -t ~/Share/Databases/gtdb-rs220.lineages.csv.gz \
                         --output-dir 05_TAXONOMIC_PROFILE \
                         --output-base sourmash.phylum \
                         --output-format lineage_summary \
                         --rank phylum
 
 sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
-                        -t ~/Share/Databases/gtdb-rs207.taxonomy.with-strain.csv.gz \
+                        -t ~/Share/Databases/gtdb-rs220.lineages.csv.gz \
                         --output-dir 05_TAXONOMIC_PROFILE \
                         --output-base sourmash.genus \
                         --output-format lineage_summary \
@@ -379,6 +391,7 @@ sourmash tax metagenome -g 05_TAXONOMIC_PROFILE/*.gather.csv \
 
 Now analyse the results from `sourmash` in `R` or other data analysis tool of your preference.  
 Are there differences between the taxonomic profiles obtained by the two different tools?  
+
 
 ## Metagenome assembly
 
