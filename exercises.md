@@ -362,7 +362,7 @@ not across reads themselves.
 conda activate envmetagenomics
 
 for sample in $(cat SAMPLES.txt); do
-  sourmash sketch dna 03_TRIMMED/${sample}_R?.fastq.gz \
+  sourmash sketch dna 03_TRIMMED/${sample}_pe_?.fastq.gz \
                       -p k=31,scaled=1000,abund \
                       -o 05_TAXONOMIC_PROFILE/${sample}.sig.zip \
                       --merge ${sample}
