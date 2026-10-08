@@ -23,10 +23,11 @@
 
 ## Setting up the cloud computing
 
-We will use the [Amazon Cloud](https://aws.amazon.com/ec2/) (AWS EC2) services for most of the analyses. The IP address of the remote machine will change every day, so a new IP adress will be posted in Slack each morning. Your username - that you have received by e-mail/Slack - will be the same for the whole course. We will use `ssh` to connect to the remote machine.
+We will use the [Amazon Cloud](https://aws.amazon.com/ec2/) (AWS EC2) services for most of the analyses. The IP address of the remote machine will change every day, so a new IP adress will be posted in Slack each morning. Your username - that you have received by e-mail/Slack - will be the same for the whole course. We will use `ssh` to connect to the remote machine. You will also receive the key i.e. pem-file, something like envmetagenomics26.pem, which you will have to change permissions for. Below is an example command line for a user "ubuntu" accessing the AWS at IP address "54.202.26.255".
 
 ```bash
-ssh -i ameta25.pem -XY ubuntu@54.202.26.255
+hmod 600 envmetagenomics26.pem
+ssh -i envmetagenomics26.pem -XY ubuntu@54.202.26.255
 ```
 
 ### Cloning the course's GitHub repository
