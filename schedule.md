@@ -25,9 +25,10 @@
 
 |Time     |Activity                       |Link                                                                                                           |
 |---------|-------------------------------|---------------------------------------------------------------------------------------------------------------|
-|Morning  |Questions from the previous day|[Flinga](https://flinga.fi/s/FFQ5876)                                                                          |
-|Morning  |QC and trimming                |[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Lectures/QC-and-trimming.pdf) / [Hands-on](exercises.md#qc-and-trimming)    |
-|Afternoon|Read-based taxonomic profiling |[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main//Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)|
+|Morning  |Questions from the previous day  |[Flinga](https://flinga.fi/s/FFQ5876)                                                                          |
+|Morning  |QC and trimming                  |[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main/Lectures/QC-and-trimming.pdf) / [Hands-on](exercises.md#qc-and-trimming)    |
+|Afternoon|Host removal and decontamination |[Hands-on](exercises.md#host-removal)|
+|Afternoon|Read-based taxonomic profiling   |[Slides](https://github.com/NikolayOskolkov/EnvMetagenomics/blob/main//Lectures/read-based-taxonomic-profiling.pdf) / [Hands-on](exercises.md#read-based-taxonomic-profiling)|
 
 ## Wednesday - 9 am -1 pm Berlin time
 
