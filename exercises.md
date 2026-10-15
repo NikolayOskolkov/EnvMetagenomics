@@ -583,6 +583,7 @@ mkdir 09_SEMIBIN
 This is the same operation we have been doing before.
 
 ```bash
+conda activate envmetagenomics
 
 bowtie2-build \
     --large-index 08_ASSEMBLY_ONT/polished_assembly_pre.fa 08_ASSEMBLY_ONT/polished_assembly_pre.fa \
@@ -718,6 +719,9 @@ gtdbtk classify_wf \
       --skip_ani_screen
 ```
 
+
+You can find sample outputs in `~/Share/expected_outputs/09_SEMIBIN/GTDB/gtdbtk.bac120.summary.tsv`.
+
 ### Quality control recap
 
 1. We have used checkM2 to estimate `completeness` and `contamination`
@@ -825,4 +829,6 @@ emapper.py \
 
 This will produce wide-ranging results, which can be used to infer the functions of the genes.
 Again, these are not definitive results, but they are a starting point for further investigation.
+
+On the server, you can find samples results at `~/Share/expected_outputs/10_MAG_ANNOTATIONS/SemiBin_0.emapper/SemiBin_0.emapper.annotations`.
 
